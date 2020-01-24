@@ -1,0 +1,35 @@
+<style>
+  ul {
+    list-style: none;
+    padding-left: 0px;
+  }
+</style>
+<button class="btn btn-dark btn-sm text-light" [routerLink]="['/pets']">Back</button>
+
+<h3>{{pet.name}}</h3>
+<div>
+  <div class="row">
+    <p class="strong col-2 text-right">Pet Type:</p>
+    <p class="col text-left">{{pet.petType}}</p>
+  </div>
+  <div class="row">
+    <p class="strong col-2 text-right">Description:</p>
+    <p class="col text-left">{{pet.description}}</p>
+  </div>
+  <div class="row">
+    <p class="strong col-2 text-right">Skills:</p>
+    <ul class="col">
+      <li *ngIf="pet.skill1 != ''" class="col text-left">{{pet.skill1}}</li>
+      <li *ngIf="pet.skill2 != ''" class="col text-left">{{pet.skill2}}</li>
+      <li *ngIf="pet.skill3 != ''" class="col text-left">{{pet.skill3}}</li>
+    </ul>
+  </div>
+  <div class="row">
+    <p class="strong col-2 text-right">Likes:</p>
+    <p class="col text-left">{{pet.likes}}</p>
+  </div>
+  <div class="row">
+    <button class="btn btn-sm btn-primary" (click)="likePet()" [disabled]="isLiked" >Like this pet</button> &nbsp;
+    <button class="btn btn-sm btn-success" (click)="deletePet()">Adopt this pet!</button>
+  </div>
+</div>
