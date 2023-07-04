@@ -1,8 +1,8 @@
-const Pet = require('../Models/models');
+const Pet = require('../Models/Pet');
 
 module.exports = {
   getAllPets: (req,res) => {
-    Pet.find().sort({petType: 1, name: 1})
+    Pet.find().sort({animalType: 1, name: 1})
       .then(data => {
         res.json({ status: "success", results: data});
       })
