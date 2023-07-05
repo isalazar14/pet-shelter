@@ -9,7 +9,7 @@
 <h3>{{pet.name}}</h3>
 <div>
   <div class="row">
-    <p class="strong col-2 text-right">Pet Type:</p>
+    <p class="strong col-2 text-right">Animal Type:</p>
     <p class="col text-left">{{pet.petType}}</p>
   </div>
   <div class="row">
@@ -19,9 +19,11 @@
   <div class="row">
     <p class="strong col-2 text-right">Skills:</p>
     <ul class="col">
-      <li *ngIf="pet.skill1 != ''" class="col text-left">{{pet.skill1}}</li>
-      <li *ngIf="pet.skill2 != ''" class="col text-left">{{pet.skill2}}</li>
-      <li *ngIf="pet.skill3 != ''" class="col text-left">{{pet.skill3}}</li>
+      <li *ngFor="let skill of pet.skills" class="col text-left">
+        {{skill}}
+      </li>">{{pet.skill1}}</li>
+      <!-- <li *ngIf="pet.skill2 != ''" class="col text-left">{{pet.skill2}}</li>
+      <li *ngIf="pet.skill3 != ''" class="col text-left">{{pet.skill3}}</li> -->
     </ul>
   </div>
   <div class="row">

@@ -14,9 +14,12 @@ export class HomeComponent implements OnInit {
     private _http: HttpService,
     // private _route: ActivatedRoute, /* for reference for other components */
     // private _router: Router /* for reference for other components */
-    ) { }
+    ) {
+      console.log("construction HomeComponent")
+    }
 
-  ngOnInit() {
+    ngOnInit() {
+    console.log("HomeComponent init")
     this.allPets = [];
     this.getAllPets();
   }

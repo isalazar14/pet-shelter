@@ -8,6 +8,6 @@ module.exports = app => {
   app.put('/api/pets/:id', controller.editPet);
   app.delete('/api/pets/:id', controller.deletePet);
   app.all("*", (req, res, next) => {
-    res.sendFile(path.resolve('./public/dist/public/index.html'));
+    res.sendFile(path.resolve('./client/dist/public/index.html'));
   });
 }
