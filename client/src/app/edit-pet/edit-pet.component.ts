@@ -10,11 +10,17 @@ import { Router, ActivatedRoute, Params } from '@angular/router';
 export class EditPetComponent implements OnInit {
 
   pet: any;
-  editedPet: any;
+  editedPet: {
+    name: "",
+    animalType: "",
+    description: "",
+    skills: string[],
+  };
+  newSkill: string = '';
 
   constructor(
     private _http: HttpService,
-    private _route: ActivatedRoute, 
+    private _route: ActivatedRoute,
     private _router: Router
     ) { }
 
@@ -59,7 +65,7 @@ export class EditPetComponent implements OnInit {
       this.editedPet = this.pet;
     }
   }
-  
+
   cancelForm() {
     if (confirm('Are you sure?')){
       event.preventDefault();
@@ -68,4 +74,18 @@ export class EditPetComponent implements OnInit {
     }
   }
 
+  addSkill(){
+    if (this.newSkill.trim() !== '') {
+      this.editedPet.skills.push(this.newSkill);
+      this.newSkill = '';
+    }
+  }
+
+  deleteSkill(skillIdx){
+    if (confirm("Are you sure you want to delete this skill?")){
+      event.preventDefault()
+      this.editedPet.skills.splice(skillIdx,1)
+      this.editedPet.skills = [...this.editedPet.skills]
+    }
+  }
 }

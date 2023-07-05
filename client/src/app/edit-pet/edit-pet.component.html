@@ -10,65 +10,48 @@
   <div class="form-group">
     <label for="name" class="form-text">Pet Name</label>
     <small *ngIf="name.dirty && name.errors.required" class="form-text text-danger">name is required</small>
-    <small *ngIf="name.dirty && name.touched && name.errors.minlength" class="form-text text-danger">name's gotta be at least 3 chars</small>
-    <input 
-      type="text" name="name" class="form-control"
-      [(ngModel)]="editedPet.name" 
-      #name="ngModel" 
-      minlength="3"
-      required
-    >
-    </div>
+    <small *ngIf="name.dirty && name.touched && name.errors.minlength" class="form-text text-danger">name's gotta be at
+      least 3 chars</small>
+    <input type="text" name="name" class="form-control" [(ngModel)]="editedPet.name" #name="ngModel" minlength="3"
+      required>
+  </div>
   <div class="form-group">
-    <label for="petType" class="form-text">Pet type</label>
-    <small *ngIf="petType.dirty && petType.errors && petType.errors.required" class="form-text text-danger">Type is required</small>
-    <small *ngIf="petType.dirty && petType.errors && petType.touched && petType.errors.minlength" class="form-text text-danger">Type's gotta be at least 3 chars</small>
-    <input 
-      type="text" name="petType" class="form-control"
-      [(ngModel)]="editedPet.petType" 
-      #petType="ngModel" 
-      minlength="3"
-      required
-    >
-    </div>
+    <label for="animalType" class="form-text">Pet type</label>
+    <small *ngIf="animalType.dirty && animalType.errors && animalType.errors.required"
+      class="form-text text-danger">Type is required</small>
+    <small *ngIf="animalType.dirty && animalType.errors && animalType.touched && animalType.errors.minlength"
+      class="form-text text-danger">Type's gotta be at least 3 chars</small>
+    <input type="text" name="animalType" class="form-control" [(ngModel)]="editedPet.animalType" #animalType="ngModel"
+      minlength="3" required>
+  </div>
   <div class="form-group">
     <label for="description" class="form-text">Pet description</label>
-    <small *ngIf="description.dirty && description.errors && description.errors.required" class="form-text text-danger">description is required</small>
-    <small *ngIf="description.dirty && description.errors && description.touched && description.errors.minlength" class="form-text text-danger">description's gotta be at least 3 chars</small>
-    <input 
-      type="text" name="description" class="form-control"
-      [(ngModel)]="editedPet.description" 
-      #description="ngModel" 
-      minlength="3"
-      required
-    >
+    <small *ngIf="description.dirty && description.errors && description.errors.required"
+      class="form-text text-danger">description is required</small>
+    <small *ngIf="description.dirty && description.errors && description.touched && description.errors.minlength"
+      class="form-text text-danger">description's gotta be at least 3 chars</small>
+    <textarea type="text" name="description" class="form-control" [(ngModel)]="editedPet.description"
+      #description="ngModel" minlength="3" required></textarea>
     </div>
-  <u><p>Skills:</p></u>
-  <div class="form-group form-inline">
-    <label for="skill1" class="form-text col-3">Skill 1</label>
-    <input 
-      type="text" name="skill1" class="form-control col"
-      [(ngModel)]="editedPet.skill1" 
-      #skill1="ngModel" 
-    >
+  <p>Skills:</p>
+  <div>
+    <div *ngFor="let skill of pet.skills; let i = index"  class="form-group form-inline">
+      <label for="skill{{i}}" class="form-text col-3">Skill {{i+1}}</label>
+      <input
+        type="text" name="skill{{i}}" class="form-control col"
+        [(ngModel)]="editedPet.skills[i]"
+      >
+      <button class="btn btn-sm btn-danger" (click)="deleteSkill(i)">Delete</button>
     </div>
-  <div class="form-group form-inline">
-    <label for="skill2" class="form-text col-3">Skill 2</label>
-    <input 
-      type="text" name="skill2" class="form-control col"
-      [(ngModel)]="editedPet.skill2" 
-      #skill2="ngModel" 
-    >
+    <div class="form-group form-inline">
+      <label for="newSkill" class="form-text col-3">Add Skill</label>
+      <input
+        type="text" name="newSkil" class="form-control col"
+        [(ngModel)]="newSkill"
+      >
+      <button (click)="addSkill()" class="btn btn-secondary">Add</button>
     </div>
-  <div class="form-group form-inline">
-    <label for="skill3" class="form-text col-3">Skill 3</label>
-    <input 
-      type="text" name="skill3" class="form-control col"
-      [(ngModel)]="editedPet.skill3" 
-      #skill3="ngModel" 
-    >
-    </div>
-  
+  </div>
   <button class="btn btn-success" (click)="editPet()">Save Changes</button> &nbsp;
   <button class="btn btn-danger" (click)="cancelForm()">Cancel</button>
 </form>

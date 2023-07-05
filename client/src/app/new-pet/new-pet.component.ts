@@ -11,6 +11,7 @@ import { Router } from '@angular/router';
 export class NewPetComponent implements OnInit {
 
   newPet: any;
+  newSkill: String = ''
 
   constructor(
     private _http: HttpService,
@@ -20,14 +21,12 @@ export class NewPetComponent implements OnInit {
   ngOnInit() {
     this.newPet = {
       name: "",
-      petType: "",
+      animalType: "",
       description: "",
-      skill1: "",
-      skill2: "",
-      skill3: "",
+      skills: [],
     }
     // console.log("new pet:", this.newPet);
-    
+
   }
 
   createPet() {
@@ -49,11 +48,26 @@ export class NewPetComponent implements OnInit {
       this.newPet = {name:""};
     }
   }
-  
+
   cancelForm() {
     if (confirm('Are you sure?')){
       event.preventDefault();
       this._router.navigate(['/pets']);
+    }
+  }
+
+  addSkill(){
+    if (this.newSkill.trim() !== '') {
+      this.newPet.skills.push(this.newSkill);
+      this.newSkill = '';
+    }
+  }
+
+  deleteSkill(skillIdx){
+    if (confirm("Are you sure you want to delete this skill?")){
+      event.preventDefault()
+      this.newPet.skills.splice(skillIdx,1)
+      this.newPet.skills = [...this.newPet.skills]
     }
   }
 
