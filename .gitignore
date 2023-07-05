@@ -4,6 +4,7 @@ node_modules/
 .DS_Store
 .idea
 .vagrant
+.angular
 bootstrap.sh
 VagrantFile
 bower_components/
