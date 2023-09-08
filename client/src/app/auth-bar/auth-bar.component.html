@@ -1,0 +1,15 @@
+<div class="d-flex flex-row">
+  <div class="justity-content-start">
+    <ng-content></ng-content>
+  </div>
+  <div class="justify-content-end ml-auto align-self-center">
+    <button *ngIf="isLoggedin; else authButtons" (click)="logOut()" class="btn btn-danger">
+      Log out
+    </button>
+
+    <ng-template #authButtons>
+      <button class="btn btn-secondary" (click)="register()">Register</button>
+      <button class="btn btn-primary ml-1" (click)="logIn()">Log In</button>
+    </ng-template>
+  </div>
+</div>

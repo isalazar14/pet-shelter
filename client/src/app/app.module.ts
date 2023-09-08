@@ -6,10 +6,12 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { HttpClientModule } from '@angular/common/http';
 import { HomeComponent } from './home/home.component';
-import { HttpService } from './http.service';
+import { ApiPetsService } from './api.pets.service';
 import { NewPetComponent } from './new-pet/new-pet.component';
 import { PetDetailsComponent } from './pet-details/pet-details.component';
 import { EditPetComponent } from './edit-pet/edit-pet.component';
+import { AuthBarComponent } from './auth-bar/auth-bar.component';
+import { AuthService } from './auth.service';
 
 @NgModule({
   declarations: [
@@ -17,7 +19,8 @@ import { EditPetComponent } from './edit-pet/edit-pet.component';
     HomeComponent,
     NewPetComponent,
     PetDetailsComponent,
-    EditPetComponent
+    EditPetComponent,
+    AuthBarComponent
   ],
   imports: [
     BrowserModule,
@@ -25,7 +28,7 @@ import { EditPetComponent } from './edit-pet/edit-pet.component';
     HttpClientModule,
     FormsModule
   ],
-  providers: [HttpService],
+  providers: [ApiPetsService, AuthService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
