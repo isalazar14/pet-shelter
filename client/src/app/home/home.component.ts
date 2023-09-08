@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { HttpService } from '../http.service';
+import { ApiPetsService } from '../services/api.pets.service';
 import { ActivatedRoute, Router, Params } from '@angular/router';
 
 @Component({
@@ -11,7 +11,7 @@ export class HomeComponent implements OnInit {
   allPets: any;
 
   constructor(
-    private _http: HttpService,
+    private _http: ApiPetsService,
     // private _route: ActivatedRoute, /* for reference for other components */
     // private _router: Router /* for reference for other components */
     ) {

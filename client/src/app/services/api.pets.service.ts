@@ -5,7 +5,7 @@ import { environment } from 'src/environments/environment';
 @Injectable({
   providedIn: 'root'
 })
-export class HttpService {
+export class ApiPetsService {
 
   currentpet: any;
 

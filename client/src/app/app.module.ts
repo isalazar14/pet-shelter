@@ -6,12 +6,12 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { HttpClientModule } from '@angular/common/http';
 import { HomeComponent } from './home/home.component';
-import { ApiPetsService } from './api.pets.service';
+import { ApiPetsService } from './services/api.pets.service';
 import { NewPetComponent } from './new-pet/new-pet.component';
 import { PetDetailsComponent } from './pet-details/pet-details.component';
 import { EditPetComponent } from './edit-pet/edit-pet.component';
 import { AuthBarComponent } from './auth-bar/auth-bar.component';
-import { AuthService } from './auth.service';
+import { AuthService } from './services/auth.service';
 
 @NgModule({
   declarations: [

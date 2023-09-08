@@ -1,5 +1,5 @@
 import { Component, OnInit, Input } from '@angular/core';
-import { HttpService } from '../http.service';
+import { ApiPetsService } from '../services/api.pets.service';
 import { Router } from '@angular/router';
 
 @Component({
@@ -14,7 +14,7 @@ export class NewPetComponent implements OnInit {
   newSkill: String = ''
 
   constructor(
-    private _http: HttpService,
+    private _http: ApiPetsService,
     private _router: Router
     ) { }
 

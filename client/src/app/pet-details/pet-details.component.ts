@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { HttpService } from '../http.service';
+import { ApiPetsService } from '../services/api.pets.service';
 import { Router, ActivatedRoute, Params } from '@angular/router';
 
 @Component({
@@ -11,7 +11,7 @@ export class PetDetailsComponent implements OnInit {
   pet: any;
   isLiked: boolean;
 
-  constructor(private _http: HttpService, private _route: ActivatedRoute, private _router: Router) { }
+  constructor(private _http: ApiPetsService, private _route: ActivatedRoute, private _router: Router) { }
 
   ngOnInit() {
     this.getPet();
