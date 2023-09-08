@@ -1,6 +1,6 @@
 const mongoose = require("mongoose");
 
-const Pet = require("./Models/Pet");
+const Pet = require("../models/pet");
 
 const petsData = [
   {

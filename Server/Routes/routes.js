@@ -1,4 +1,4 @@
-const controller = require('../Controllers/controller');
+const controller = require('../Controllers/pets');
 const path = require('path');
 
 module.exports = app => {
