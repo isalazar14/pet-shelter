@@ -1,8 +1,11 @@
-const User = require("../models/user");
+const db = require("../utils/db"),
+  auth = require("../utils/auth"),
+  bcrypt = require("bcrypt"),
+  saltRounds = 10;
 
 module.exports = {
   // getAllUsers: (req,res) => {
-  //   User.find().sort({animalType: 1, name: 1})
+  //   db.User.find().sort({animalType: 1, name: 1})
   //     .then(data => {
   //       res.json({ status: "success", results: data});
   //     })
@@ -11,7 +14,7 @@ module.exports = {
   //     })
   // },
   getUser(req, res) {
-    User.findOne({ _id: req.params.id })
+    db.User.findOne({ _id: req.params.id })
       .then((data) => {
         res.json({ status: "success", results: data });
       })
@@ -19,23 +22,34 @@ module.exports = {
         res.json({ status: "error", results: err });
       });
   },
-  register(req, res) {
-    const { username, password } = req.body;
+  async register(req, res) {
+    const { name, username, email, password } = req.body,
+      pwSalt = bcrypt.genSaltSync(saltRounds),
+      pwHash = bcrypt.hashSync(password, pwSalt),
+      newUserData = {
+        name,
+        username,
+        email,
+        pwHash,
+        pwSalt,
+      };
 
     // Implement registration logic here (e.g., save user data to MongoDB)
 
     // Respond with success or error
-    User.create(req.body)
-      .then((data) => {
+
+    db.User.create(newUserData)
+      .then((newUser) => {
+        const accessToken = auth.generateAuthToken(newUser);
         res.status(200).json({ message: "Registration successful" });
-        res.json({ status: "success", results: data });
+        res.json({ status: "success", results: newUser });
       })
       .catch((err) => {
         res.json({ status: "error", results: err });
       });
   },
   editUser(req, res) {
-    User.findOneAndUpdate({ _id: req.params.id }, req.body, {
+    db.User.findOneAndUpdate({ _id: req.params.id }, req.body, {
       runValidators: true,
       new: true,
     })
@@ -47,7 +61,7 @@ module.exports = {
       });
   },
   deleteUser: (req, res) => {
-    User.findOneAndDelete({ _id: req.params.id })
+    db.User.findOneAndDelete({ _id: req.params.id })
       .then((data) => {
         res.json({ status: "success", results: data });
       })

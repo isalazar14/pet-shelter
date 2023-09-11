@@ -1,11 +1,12 @@
-const petRouter = require("express").Router();
-const controller = require("../controllers/pets");
+const petRouter = require("express").Router(),
+  petsController = require("../controllers/pets"),
+  auth = require("../utils/auth");
 // const path = require("path");
 
-petRouter.get("", controller.getAllPets);
-petRouter.get(":id", controller.getPet);
-petRouter.post("", controller.createPet);
-petRouter.put(":id", controller.editPet);
-petRouter.delete(":id", controller.deletePet);
+petRouter.get("", petsController.getAllPets);
+petRouter.get(":id", petsController.getPet);
+petRouter.post("", auth.authenticateJWT, petsController.createPet);
+petRouter.put(":id", auth.authenticateJWT, petsController.editPet);
+petRouter.delete(":id", auth.authenticateJWT, petsController.deletePet);
 
 module.exports = petRouter;

@@ -1,8 +1,8 @@
-const Pet = require('../models/pet');
+const db = require('../utils/db')
 
 module.exports = {
   getAllPets: (req,res) => {
-    Pet.find().sort({animalType: 1, name: 1})
+    db.Pet.find().sort({animalType: 1, name: 1})
       .then(data => {
         res.json({ status: "success", results: data});
       })
@@ -11,7 +11,7 @@ module.exports = {
       })
   },
   getPet: (req,res) => {
-    Pet.findOne({_id: req.params.id})
+    db.Pet.findOne({_id: req.params.id})
       .then(data => {
         res.json({ status: "success", results: data });
       })
@@ -20,7 +20,7 @@ module.exports = {
       })
   },
   createPet: (req,res) => {
-    Pet.create(req.body)
+    db.Pet.create(req.body)
       .then(data => {
         res.json({ status: "success", results: data});
       })
@@ -29,7 +29,7 @@ module.exports = {
       })
   },
   editPet: (req,res) => {
-    Pet.findOneAndUpdate({_id: req.params.id}, req.body, { runValidators: true, new: true })
+    db.Pet.findOneAndUpdate({_id: req.params.id}, req.body, { runValidators: true, new: true })
       .then(data => {
         res.json({ status: "success", results: data});
       })
@@ -38,7 +38,7 @@ module.exports = {
       })
   },
   deletePet: (req,res) => {
-    Pet.findOneAndDelete({_id: req.params.id})
+    db.Pet.findOneAndDelete({_id: req.params.id})
       .then(data => {
         res.json({ status: "success", results: data});
       })

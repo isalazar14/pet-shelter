@@ -25,10 +25,13 @@ const UserSchema = new mongoose.Schema(
         message: 'Invalid email format',
       }
     },
-    password: {
+    pwHash: {
       type: String,
       required: true,
-      minlength: 8
+    },
+    pwdSalt: {
+      type: String,
+      required: true,
     },
     role: {
       type: String,
