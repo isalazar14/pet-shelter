@@ -1,6 +1,6 @@
 const userRouter = require("express").Router(),
- usersController = require("../controllers/users"),
- auth = require('../utils/auth')
+  usersController = require("../controllers/users"),
+  auth = require("../utils/auth");
 
 // const path = require("path");
 
