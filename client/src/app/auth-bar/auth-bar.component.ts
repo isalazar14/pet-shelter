@@ -6,10 +6,10 @@ import { Component, OnInit } from "@angular/core";
   styleUrls: ["./auth-bar.component.css"],
 })
 export class AuthBarComponent implements OnInit {
-  isLoggedin: boolean;
+  isLoggedIn: boolean;
 
   ngOnInit() {
-    this.isLoggedin = false;
+    this.isLoggedIn = false;
   }
 
   register() {
@@ -18,12 +18,12 @@ export class AuthBarComponent implements OnInit {
   }
 
   logIn() {
-    this.isLoggedin = true;
+    this.isLoggedIn = true;
     console.log("logged in");
   }
 
   logOut() {
-    this.isLoggedin = false;
+    this.isLoggedIn = false;
     console.log("logged out");
   }
 }
